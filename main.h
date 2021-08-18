@@ -3,7 +3,7 @@
 
 void printPrompt();
 
-int parseCommands(char *bufferarg, char *command);
+int parseCommands(char *bufferarg, char **command);
 
 
 #endif

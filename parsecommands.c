@@ -12,7 +12,7 @@
 
 
 
-int parseCommands(char *bufferarg, char *command)
+int parseCommands(char *bufferarg, char **command)
 {
     if(fgets(bufferarg, sizeof(bufferarg), stdin) != NULL)
     {
