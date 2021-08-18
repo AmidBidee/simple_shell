@@ -10,7 +10,7 @@
  */
 
 
-int main ()
+int main (void)
 {
     char argbuffer [1024]; /*this is to read the stdin and used to mark null points for *command*/
     char *command[64]; /*pointer to pointer of arguments, a 2dimensional array*/
@@ -42,5 +42,10 @@ int main ()
             printf("Error");
         }
     }
-    
+}
+
+void printPrompt()
+{
+    /*you can try to fix in the working directory*/
+    printf("$");
 }

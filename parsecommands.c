@@ -17,7 +17,7 @@ int parseCommands(char *bufferarg, char **command)
     if(fgets(bufferarg, sizeof(bufferarg), stdin) != NULL)
     {
         /*needs more work for implementatio*/
-        return 1;
+        return 0;
     }
     else
     {
