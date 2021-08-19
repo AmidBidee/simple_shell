@@ -1,6 +1,4 @@
-#include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "main.h"man 
 
 /**
  * parseCommands - this reads info from the stdin and breaks them
@@ -16,7 +14,7 @@ int parseCommands(char *bufferarg, char **command)
 {
     if(fgets(bufferarg, sizeof(bufferarg), stdin) != NULL)
     {
-        /*needs more work for implementatio*/
+        /*needs more work for implementation*/
         return 0;
     }
     else
