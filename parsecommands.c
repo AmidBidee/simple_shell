@@ -1,4 +1,4 @@
-#include "main.h"man 
+#include "main.h"
 
 /**
  * parseCommands - this reads info from the stdin and breaks them

@@ -2,20 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-/**
- * inputPrompt - prints a prompt and fills a argument array
- * @args: pointer to args pointer
- * Return: array length
- */
+#include <unistd.h>
+
 
 int inputPrompt(char **args)
 {
-    char *line = NULL, *str, d[] = " ", l_len; /* a lineptr, string ptr, array delimeter, array length */
+    char *line = NULL, *str, d[] = " ", cwd[1024]; /* a lineptr, string ptr, array delimeter, array length */
     size_t len = 0; /* var for length of each strings */
     ssize_t nr; /* var for number of line to be read */
-    int i = 0, j; /* var for indexes */
+    int i = 0, l_len = 0; /* var for indexes */
 
-    printf("$");  /* prints a dollar sign before commands everytime it's called */
+    if (args != NULL)
+        memset(args, 0, sizeof(args)); /* clear the array before proceeding if its not empty */
+    
+    if (getcwd(cwd, sizeof(cwd)) != NULL)
+        printf("%s$ ", cwd); /* prints a dollar sign before commands everytime it's called */
+
     nr = getline(&line, &len, stdin);  /* get the commands from standard input */
 
     if (nr == -1)   /* if it fails to read the lines, exit */
@@ -27,8 +29,9 @@ int inputPrompt(char **args)
         while (str != NULL)
         {
             args[l_len] = str;   /* fill the args array with the tokens */
-            str = strtok(NULL, d);  /* Not to sure but i think this separates each token in array */
-            l_len++;    /* increase this so we can use as length */
+            str = strtok(NULL, d);
+            l_len++;  /* Not to sure but i think this separates each token in array */
+            /* increase this so we can use as length */
         }
     }
 

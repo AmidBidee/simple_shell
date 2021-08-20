@@ -13,22 +13,27 @@
 int main (void)
 {
     char argbuffer [1024]; /*this is to read the stdin and used to mark null points for *command*/
-    char *command[64]; /*pointer to pointer of arguments, a 2dimensional array*/
-    int statusCode = 0;
+    char **command; /*pointer to pointer of arguments, a 2dimensional array*/
+    int statusCode = 0, arg_len;
     __pid_t mypid;
-    int inputstream;
+    char *env_args[] = {NULL};
+    /*char *c[] = {"/bin/ls", "-l\n", NULL};*/
+    /*char *c = malloc(sizeof(char *));*/
 
     while (1)
     {
-        printPrompt();
-        statusCode = parseCommands(argbuffer, command); /*here we read inpuit and fill them in the command pointer*/
+        command = malloc(sizeof(char *));
+        arg_len = inputPrompt(command);
+        /* statusCode = parseCommands(argbuffer, command); /*here we read input and fill them in the command pointer*/
         if (statusCode != -1)
         {
             mypid = fork();
 
             if(mypid == 0)
             {
-                execvp(*command, command);
+                /*printf("%s %s", command[0], command[arg_len]);*/
+                /*command[arg_len] = NULL;*/
+                execve(command[0], command, env_args);
                 /*child process to run the command*/
             }
             else
@@ -41,11 +46,6 @@ int main (void)
         {
             printf("Error");
         }
+        free(command);
     }
-}
-
-void printPrompt()
-{
-    /*you can try to fix in the working directory*/
-    printf("$");
 }
