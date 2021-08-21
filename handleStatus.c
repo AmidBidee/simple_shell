@@ -9,6 +9,7 @@ int handlestatus(char **command)
 {
     /*check for exit*/
     /*1 is for exit,  2 is for clear*/
+
     if(strcmp(&(*command[0]), "exit") == 0)
     {
         return 1;

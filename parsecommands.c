@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 #define MAX_BUFF 1024
 
 /**
@@ -10,6 +11,8 @@
  */
 
 char* handlePath(char *tmp);
+
+int checkifBuiltIn(char* command);
 
 int parseCommands(char **args)
 {
@@ -25,7 +28,8 @@ int parseCommands(char **args)
 
     if (nr == -1)   /* if it fails to read the lines, exit */
         exit(EXIT_FAILURE);
-    line = handlePath(buff);
+    line = handlePath(buff); /*this checks if there is a '/bin/' appended, if none, it appends*/
+
     if (nr)
     {
         for (i = 0; i < 2; i++)
@@ -57,11 +61,20 @@ int parseCommands(char **args)
  * Return : returns the 2d array
  */
 
-char* handlePath(char *buff){
-    /*check if path is not yet appended*/
-    char token = strtok(buff, ' ');
+char* getcmd (char *buff){
+    char *tmp;
+    tmp = malloc(sizeof(buff));
+    strcpy(tmp, buff);
+    return (strtok(tmp, " "));
+}
 
-    if(checkBuiltin(token) == -1) /*make sure token is not a built in command*/
+
+char* handlePath(char *buff){
+        int checkbuff = 0;
+    /*check if path is not yet appended*/
+    char *token = getcmd(buff);
+    checkbuff = checkifBuiltIn(token); /*make sure token is not a built in command*/
+    if (checkbuff == 1) 
     {
         return buff;
     }
@@ -81,6 +94,33 @@ char* handlePath(char *buff){
 }
 
 
-int checkBuiltin(char* command){
 
+int checkifBuiltIn(char* command)
+{
+    int iterator = 0;
+    command = strtok(command, "\n");
+    char ch_arr[3][10] = {
+                         "clear",
+                         "exit",
+                         "cd"
+                     };
+
+    while (ch_arr[iterator] && iterator < 3)
+    {
+        if (strcmp(ch_arr[iterator], command) == 0)
+        {
+            return 1;
+        }
+        iterator ++;
+    }
+
+    /*also need to be sure that the command does not exist in the '/bin/ folder*/
+
+    return 0;
+}
+
+
+int handleBinDir(char *cmd){
+    /*load all files in bin and make comparison against them*/
+    
 }
