@@ -104,7 +104,12 @@ int checkifBuiltIn(char* command)
                          "exit",
                          "cd"
                      };
-
+    if(handleBinDir(command) == 1)
+    {
+        /*if the command is not in the bin folder, means it does not exist andn
+        its not a built in command*/
+        return 1;
+    }
     while (ch_arr[iterator] && iterator < 3)
     {
         if (strcmp(ch_arr[iterator], command) == 0)
@@ -122,5 +127,5 @@ int checkifBuiltIn(char* command)
 
 int handleBinDir(char *cmd){
     /*load all files in bin and make comparison against them*/
-    
+
 }
