@@ -26,7 +26,6 @@ int parseCommands(char **args)
     if (nr == -1)   /* if it fails to read the lines, exit */
         exit(EXIT_FAILURE);
     line = handlePath(buff);
-    printf("%s", line);
     if (nr)
     {
         for (i = 0; i < 2; i++)
@@ -60,6 +59,13 @@ int parseCommands(char **args)
 
 char* handlePath(char *buff){
     /*check if path is not yet appended*/
+    char token = strtok(buff, ' ');
+
+    if(checkBuiltin(token) == -1) /*make sure token is not a built in command*/
+    {
+        return buff;
+    }
+
     char path[] = "/bin/";
     char *tmp = malloc(sizeof(char) * MAX_BUFF);
     strcat(tmp, path);
@@ -75,3 +81,6 @@ char* handlePath(char *buff){
 }
 
 
+int checkBuiltin(char* command){
+
+}
