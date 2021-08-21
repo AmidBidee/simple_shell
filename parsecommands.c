@@ -1,4 +1,5 @@
 #include "main.h"
+#define MAX_BUFF 1024
 
 /**
  * parseCommands - this reads info from the stdin and breaks them
@@ -8,11 +9,11 @@
  * Return : returns -1 if there is an error or 1 if its through
  */
 
-
+char* handlePath(char *tmp);
 
 int parseCommands(char **args)
 {
-    char *line = NULL, *str, *d[2] = {"\n", " "};  /* a lineptr, string ptr, array delimeter, array length */
+    char *line = NULL, *str, *buff, *d[2] = {"\n", " "};  /* a lineptr, string ptr, array delimeter, array length */
     size_t len = 0; /* var for length of each strings */
     ssize_t nr; /* var for number of line to be read */
     int i, l_len = 0; /* var for indexes */
@@ -20,11 +21,12 @@ int parseCommands(char **args)
     /*memset(args, 0, sizeof(args)); /* clear the array before proceeding if its not empty */
 
 
-    nr = getline(&line, &len, stdin);  /* get the commands from standard input */
+    nr = getline(&buff, &len, stdin);  /* get the commands from standard input */
 
     if (nr == -1)   /* if it fails to read the lines, exit */
         exit(EXIT_FAILURE);
-
+    line = handlePath(buff);
+    printf("%s", line);
     if (nr)
     {
         for (i = 0; i < 2; i++)
@@ -48,3 +50,28 @@ int parseCommands(char **args)
 
     return (l_len); 
 }
+
+/**
+ * handlePath - This appends the bin oath to the command
+ *              if it does not exist already
+ * @command: this is the 2d array
+ * Return : returns the 2d array
+ */
+
+char* handlePath(char *buff){
+    /*check if path is not yet appended*/
+    char path[] = "/bin/";
+    char *tmp = malloc(sizeof(char) * MAX_BUFF);
+    strcat(tmp, path);
+    if(strstr(buff, path) == NULL)
+    {
+        strcat(tmp, buff);
+    }
+    else
+    {
+        return buff;
+    }
+    return tmp;
+}
+
+

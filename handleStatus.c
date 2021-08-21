@@ -14,7 +14,7 @@ int handlestatus(char **command)
         return 1;
     }
     
-     if(&(*command[0]) == "clear")
+    if (strcmp(&(*command[0]), "clear") == 0)
     {
         return 2;
     }
