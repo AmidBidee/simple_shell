@@ -7,11 +7,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-int inputPrompt(char **args);
+void inputPrompt();
+
+int handlestatus(char **);
 
 char *_strcpy(char *dest, char *src);
 
-int parseCommands(char *bufferarg, char **command);
+int parseCommands(char **args);
+
+void appendbinpath(char **command);
 
 
 #endif

@@ -10,15 +10,41 @@
 
 
 
-int parseCommands(char *bufferarg, char **command)
+int parseCommands(char **args)
 {
-    if(fgets(bufferarg, sizeof(bufferarg), stdin) != NULL)
+    char *line = NULL, *str, *d[2] = {"\n", " "};  /* a lineptr, string ptr, array delimeter, array length */
+    size_t len = 0; /* var for length of each strings */
+    ssize_t nr; /* var for number of line to be read */
+    int i, l_len = 0; /* var for indexes */
+
+    /*memset(args, 0, sizeof(args)); /* clear the array before proceeding if its not empty */
+
+
+    nr = getline(&line, &len, stdin);  /* get the commands from standard input */
+
+    if (nr == -1)   /* if it fails to read the lines, exit */
+        exit(EXIT_FAILURE);
+
+    if (nr)
     {
-        /*needs more work for implementation*/
-        return 0;
+        for (i = 0; i < 2; i++)
+        {
+            str = strtok(line, d[i]);
+            while (str != NULL)  /* create and extract each token to str */
+            {
+                args[l_len] = str;   /* fill the args array with the tokens */
+                str = strtok(NULL, d[i]);
+                l_len++;  /* Not to sure but i think this separates each token in array */
+                /* increase this so we can use as length */
+            }
+            l_len = 0;
+        }
     }
-    else
-    {
-        return -1;
-    }
+
+    if (args == NULL)  /* if the args wasn't filled exit */
+        exit (EXIT_FAILURE);
+
+    
+
+    return (l_len); 
 }

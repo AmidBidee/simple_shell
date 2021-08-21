@@ -11,8 +11,7 @@
 
 
 int main (void)
-{
-    char argbuffer [1024]; /*this is to read the stdin and used to mark null points for *command*/
+{ /*this is to read the stdin and used to mark null points for *command*/
     char **command; /*pointer to pointer of arguments, a 2dimensional array*/
     int statusCode = 0, arg_len;
     __pid_t mypid;
@@ -23,7 +22,13 @@ int main (void)
     while (1)
     {
         command = malloc(sizeof(char *));
-        arg_len = inputPrompt(command);
+        inputPrompt();
+        arg_len = parseCommands(command);
+        statusCode = handlestatus(command);
+        if (statusCode == 1)
+        {
+            exit(getpid());
+        }
         /* statusCode = parseCommands(argbuffer, command); /*here we read input and fill them in the command pointer*/
         if (statusCode != -1)
         {
