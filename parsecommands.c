@@ -10,13 +10,10 @@
  * Return : returns -1 if there is an error or 1 if its through
  */
 
-char* handlePath(char *tmp);
-
-int checkifBuiltIn(char* command);
 
 int parseCommands(char **args)
 {
-    char *line = NULL, *str, *buff, *d[2] = {"\n", " "};  /* a lineptr, string ptr, array delimeter, array length */
+    char *line = NULL, *str, *buff = NULL, *d[2] = {"\n", " "};  /* a lineptr, string ptr, array delimeter, array length */
     size_t len = 0; /* var for length of each strings */
     ssize_t nr; /* var for number of line to be read */
     int i, l_len = 0; /* var for indexes */
@@ -25,7 +22,6 @@ int parseCommands(char **args)
 
 
     nr = getline(&buff, &len, stdin);  /* get the commands from standard input */
-
     if (nr == -1)   /* if it fails to read the lines, exit */
         exit(EXIT_FAILURE);
     line = handlePath(buff); /*this checks if there is a '/bin/' appended, if none, it appends*/
@@ -99,6 +95,10 @@ int checkifBuiltIn(char* command)
 {
     int iterator = 0;
     command = strtok(command, "\n");
+    if(command == NULL)
+    {
+        return 0;
+    }
     char ch_arr[3][10] = {
                          "clear",
                          "exit",
@@ -125,7 +125,8 @@ int checkifBuiltIn(char* command)
 }
 
 
-int handleBinDir(char *cmd){
+int handleBinDir(char *cmd)
+{
     /*load all files in bin and make comparison against them*/
 
 }
