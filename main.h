@@ -15,6 +15,12 @@ char *_strcpy(char *dest, char *src);
 
 int parseCommands(char **args);
 
+char* handlePath(char *tmp);
+
+int checkifBuiltIn(char* command);
+
+int handleBinDir(char *cmd);
+
 void appendbinpath(char **command);
 
 
