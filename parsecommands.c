@@ -80,15 +80,15 @@ int handlePath(shdata *data)
  * @command: The command to check
  * Return: returns codes for implementation
  */
-int isBuiltin(char* command)
+int isBuiltin(char *command)
 {
 	int iterator = 0;
-	char ch_arr[4][10] = {"clear", "exit","cd","env"};
+	char ch_arr[4][10] = {"clear", "exit", "cd", "env"};
 
 	command = strtok(command, "\n");
 	if (command == NULL)
 	{
-		return 0;
+		return (0);
 	}
 	while (ch_arr[iterator] && iterator < 4)
 	{
@@ -96,7 +96,7 @@ int isBuiltin(char* command)
 		{
 			return (iterator);
 		}
-		iterator ++;
+		iterator++;
 	}
 	return (-1);
 }

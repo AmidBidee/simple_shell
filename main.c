@@ -42,10 +42,11 @@ int main(void)
 
 /**
  * handleBuitin - Entry point
- @builtin:...
+ *@builtin:...
  * Return: ...
  */
-void handleBuitin(int builtin){
+void handleBuitin(int builtin)
+{
 	if (builtin == 1)
 	{
 		exit(getpid());
@@ -66,8 +67,10 @@ void handleBuitin(int builtin){
  *@data:....
  * Return: ...
  */
-void _freedata(shdata *data){
-	if (data == NULL) return;
+void _freedata(shdata *data)
+{
+	if (data == NULL)
+		return;
 	free(data->cmd);
 	free(data->args);
 	free(data->env);
@@ -78,7 +81,7 @@ void _freedata(shdata *data){
  * @dtt: this is the data
  * Return: returns the data
  */
-shdata* initdata (shdata *dtt)
+shdata *initdata(shdata *dtt)
 {
 	dtt = malloc(sizeof(shdata));
 	dtt->cmd = malloc(sizeof(char) * 1024);
