@@ -84,7 +84,7 @@ char* handlePath(char *buff)
     strcat(tmp, path);
     if(strstr(token, path) == NULL) /* check if the path is already appended */
     {
-        if ((binstat = checkBinDir(token)) == 0) /* if not append check if exist */
+        if ((binstat = checkBinDir(buff)) == 0) /* if not append check if exist */
             strcat(tmp, buff); /* then append the path */
     }
     else
@@ -110,17 +110,14 @@ int checkifBuiltIn(char* command)
                          "exit",
                          "cd"
                      };
-    if ((checkBinDir(command)) == 0)
-    {
         /*if the command is not in the bin folder, check if it matches the ch_arr commands */
-        while (ch_arr[iterator] && iterator < 3)
+    while (ch_arr[iterator] && iterator < 3)
+    {
+        if (strcmp(ch_arr[iterator], command) == 0)
         {
-            if (strcmp(ch_arr[iterator], command) == 0)
-            {
-                return 0;
-            }
-            iterator ++;
+            return 0;
         }
+        iterator ++;
     }
 
     return 1;
