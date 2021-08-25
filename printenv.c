@@ -1,6 +1,9 @@
 #include "main.h"
 
-
+/**
+ * printenv - prints the environment
+ * Return: ...
+ */
 void printenv(){
     int iterator = 0;
     while (environ[iterator] != NULL)

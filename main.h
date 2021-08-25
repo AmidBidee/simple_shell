@@ -21,8 +21,6 @@ typedef struct tdt
 
 void inputPrompt();
 
-int handlestatus(char **);
-
 char *_strcpy(char *dest, char *src);
 
 int parseCommands(shdata *);
@@ -43,4 +41,11 @@ shdata* initdata (shdata *dtt);
 
 void _freedata(shdata *data);
 
+char *_strcat(char *dest, char *src);
+
+char *_strstr(char *haystack, char *needle);
+
+char *_strcpy(char *dest, char *src);
+
+int _strcmp(char *s1, char *s2);
 #endif
