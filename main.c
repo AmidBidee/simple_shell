@@ -6,16 +6,15 @@
  */
 int main(void)
 {
-	int statusCode = 0, syscall, arg_len, builtin = 0;
+	int builtin = 0, status;
 	__pid_t mypid;
 	shdata *data;
-	int status;
 
 	while (1)
 	{
 		inputPrompt();
 		data = initdata(data);
-		arg_len = parseCommands(data);
+		parseCommands(data);
 		if (data->cmd != NULL)
 		{
 			builtin = isBuiltin(data->cmd);

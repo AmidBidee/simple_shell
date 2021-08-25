@@ -9,11 +9,10 @@
  */
 int parseCommands(shdata *data)
 {
-	char *line = NULL, *str, *buff = NULL, *d[2] = {"\n", " "};
+	char *str, *buff = NULL, *d[2] = {"\n", " "};
 	size_t len = 0;
 	ssize_t nr;
-	int i, l_len = 0, checkBin = 0;
-	char **cmd;
+	int i, l_len = 0;
 
 	nr = getline(&buff, &len, stdin);
 	if (nr == -1)
@@ -62,7 +61,6 @@ char *getcmd(char *buff)
 int handlePath(shdata *data)
 {
 	char path[] = "/bin/";
-	char *tokentmp;
 	char *tmp = malloc(sizeof(char) * MAX_BUFF);
 	struct stat st;
 
