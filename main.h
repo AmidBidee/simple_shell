@@ -35,7 +35,7 @@ int isSysCall(shdata *);
 
 void appendbinpath(char **command);
 
-void printenv();
+void _printenv(void);
 
 shdata* initdata (shdata *dtt);
 
@@ -48,4 +48,6 @@ char *_strstr(char *haystack, char *needle);
 char *_strcpy(char *dest, char *src);
 
 int _strcmp(char *s1, char *s2);
+
+void handleBuitin(int builtin);
 #endif

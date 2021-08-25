@@ -53,8 +53,7 @@ void handleBuitin(int builtin)
 	}
 	if (builtin == 3)
 	{
-		printenv();
-		continue;
+		_printenv();
 	}
 	if (builtin == 0)
 	{
