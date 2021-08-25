@@ -65,27 +65,33 @@ char* getcmd (char *buff){
 }
 
 
-char* handlePath(char *buff){
-        int checkbuff = 0;
+char* handlePath(char *buff)
+{
+    int checkbuff = 0;
     /*check if path is not yet appended*/
     char *token = getcmd(buff);
+    char path[] = "/bin/";
+    char *tmp;
+    int binstat = 0;
+
     checkbuff = checkifBuiltIn(token); /*make sure token is not a built in command*/
-    if (checkbuff == 1) 
+    if (checkbuff == 0) 
     {
         return buff;
     }
 
-    char path[] = "/bin/";
-    char *tmp = malloc(sizeof(char) * MAX_BUFF);
+    tmp = malloc(sizeof(char) * MAX_BUFF);
     strcat(tmp, path);
-    if(strstr(buff, path) == NULL)
+    if(strstr(token, path) == NULL) /* check if the path is already appended */
     {
-        strcat(tmp, buff);
+        if ((binstat = checkBinDir(token)) == 0) /* if not append check if exist */
+            strcat(tmp, buff); /* then append the path */
     }
     else
     {
-        return buff;
+        return buff; /* if it's there return it */
     }
+    
     return tmp;
 }
 
@@ -104,29 +110,40 @@ int checkifBuiltIn(char* command)
                          "exit",
                          "cd"
                      };
-    if(handleBinDir(command) == 1)
+    if ((checkBinDir(command)) == 0)
     {
-        /*if the command is not in the bin folder, means it does not exist andn
-        its not a built in command*/
-        return 1;
-    }
-    while (ch_arr[iterator] && iterator < 3)
-    {
-        if (strcmp(ch_arr[iterator], command) == 0)
+        /*if the command is not in the bin folder, check if it matches the ch_arr commands */
+        while (ch_arr[iterator] && iterator < 3)
         {
-            return 1;
+            if (strcmp(ch_arr[iterator], command) == 0)
+            {
+                return 0;
+            }
+            iterator ++;
         }
-        iterator ++;
     }
 
+    return 1;
     /*also need to be sure that the command does not exist in the '/bin/ folder*/
-
-    return 0;
 }
 
 
-int handleBinDir(char *cmd)
+int checkBinDir(char *cmd)
 {
-    /*load all files in bin and make comparison against them*/
-
+    /* loads up bin dir and make comparison against its files */
+    DIR *d; /* directory pointer */
+    struct dirent *dir;
+    d = opendir("/bin/");
+    if (d)
+    {
+        while ((dir = readdir(d)) != NULL) /* traverse to the end of the folder */
+        {
+            if ((strcmp(cmd, dir->d_name)) == 0) /* compare each file with the command */
+            {
+                return (1); /* if there's a match return 1 */
+            }    
+        }
+        closedir(d); /* close the dir */
+    }
+    return (0);
 }

@@ -2,10 +2,15 @@
 #define HOLBERTON_H
 
 #define _GNU_SOURCE
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/param.h> 
+#include <sys/stat.h> 
 #include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
+#include <sys/wait.h>
 
 void inputPrompt();
 
@@ -19,7 +24,7 @@ char* handlePath(char *tmp);
 
 int checkifBuiltIn(char* command);
 
-int handleBinDir(char *cmd);
+int checkBinDir(char *cmd);
 
 void appendbinpath(char **command);
 

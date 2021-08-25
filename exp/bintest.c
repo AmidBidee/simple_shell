@@ -16,7 +16,7 @@ int main(void)
  {
    DIR           *d;
    struct dirent *dir;
-   char command[] = {"ls"};
+   char command[] = {"cd"};
    d = opendir("/bin");
    if (d)
    {
