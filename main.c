@@ -4,7 +4,7 @@
  * main - Entry point
  * Return: ...
  */
-int main (void)
+int main(void)
 {
 	int statusCode = 0, syscall, arg_len, builtin = 0;
 	__pid_t mypid;
@@ -16,23 +16,12 @@ int main (void)
 		inputPrompt();
 		data = initdata(data);
 		arg_len = parseCommands(data);
-		if(data->cmd != NULL)
+		if (data->cmd != NULL)
 		{
-			if ((builtin = isBuiltin(data->cmd)) != -1)
+			builtin = isBuiltin(data->cmd);
+			if (builtin != -1)
 			{
-				if (builtin == 1)
-				{
-					exit(getpid());
-				}
-				if(builtin == 3)
-				{
-					printenv();
-					continue;
-				}
-				if (builtin == 0)
-				{
-					system("clear");
-				}
+				handleBuitin(builtin);
 			}
 			else if (handlePath(data) == 0)
 			{
@@ -52,7 +41,29 @@ int main (void)
 }
 
 /**
+ * handleBuitin - Entry point
+ @builtin:...
+ * Return: ...
+ */
+void handleBuitin(int builtin){
+	if (builtin == 1)
+	{
+		exit(getpid());
+	}
+	if (builtin == 3)
+	{
+		printenv();
+		continue;
+	}
+	if (builtin == 0)
+	{
+		system("clear");
+	}
+}
+
+/**
  * _freedata - frees the data
+ *@data:....
  * Return: ...
  */
 void _freedata(shdata *data){
@@ -72,6 +83,6 @@ shdata* initdata (shdata *dtt)
 	dtt = malloc(sizeof(shdata));
 	dtt->cmd = malloc(sizeof(char) * 1024);
 	dtt->args = malloc(sizeof(char *) * 10);
-	dtt->env = malloc(sizeof(char*));return dtt;
+	dtt->env = malloc(sizeof(char *));
+	return (dtt);
 }
-
