@@ -15,7 +15,7 @@ int parseCommands(shdata *data)
 	int i, l_len = 0, checkBin = 0;
 	char **cmd;
 
-	nr = getline (&buff, &len, stdin);
+	nr = getline(&buff, &len, stdin);
 	if (nr == -1)
 		exit(EXIT_FAILURE);
 
