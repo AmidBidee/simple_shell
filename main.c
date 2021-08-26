@@ -18,7 +18,7 @@ int main(void)
 		}
 		data = initdata(data);
 		parseCommands(data);
-		if (data->cmd != NULL)
+		if (data->cmd != NULL && *data->cmd != '\n')
 		{
 			builtin = isBuiltin(data->cmd);
 			if (builtin != -1)
@@ -39,7 +39,7 @@ int main(void)
 			}
 			else
 			{
-				printf("command does not exist\n");
+				printf("./hsh: 1: %s: not found\n", data->cmd);
 			}
 		}
 		_freedata(data);
