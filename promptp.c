@@ -4,7 +4,7 @@
  * inputPrompt - prints a prompt on terminal
  * Return: ....
  */
-void inputPrompt()
+void inputPrompt(void)
 {
 char *c;
 c = "$ ";
