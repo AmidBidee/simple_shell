@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 #define MAX_BUFF 1024
 
 /**
@@ -18,7 +17,6 @@ int parseCommands(shdata *data)
 	if (nr == -1)
 		exit(EXIT_FAILURE);
 
-	data->cmd = strcpy(data->cmd, getcmd(buff));
 	if (nr)
 	{
 		for (i = 0; i < 2; i++)
@@ -35,21 +33,8 @@ int parseCommands(shdata *data)
 	}
 	if (data->args == NULL)
 		exit(EXIT_FAILURE);
+	data->cmd = strcpy(data->cmd, data->args[0]);
 	return (l_len);
-}
-
-/**
- * getcmd - This gets the command from the buffer
- * @buff: this is the buff
- * Return: returns the token
- */
-char *getcmd(char *buff)
-{
-	char *tmp;
-
-	tmp = malloc(sizeof(buff));
-	_strcpy(tmp, buff);
-	return (strtok(tmp, " "));
 }
 
 /**

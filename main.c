@@ -12,7 +12,10 @@ int main(void)
 
 	while (1)
 	{
-		inputPrompt();
+		if (isatty(0))
+		{
+			inputPrompt();
+		}
 		data = initdata(data);
 		parseCommands(data);
 		if (data->cmd != NULL)
@@ -33,6 +36,10 @@ int main(void)
 				{
 					waitpid(mypid, &status, WUNTRACED);
 				}
+			}
+			else
+			{
+				printf("command does not exist\n");
 			}
 		}
 		_freedata(data);
