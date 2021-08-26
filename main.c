@@ -77,8 +77,11 @@ void _freedata(shdata *data)
 	if (data == NULL)
 		return;
 	free(data->cmd);
+	data->cmd = NULL;
 	free(data->args);
+	data->args = NULL;
 	free(data->env);
+	data->env = NULL;
 }
 
 /**

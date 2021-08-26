@@ -33,7 +33,7 @@ int parseCommands(shdata *data)
 	}
 	if (data->args == NULL)
 		exit(EXIT_FAILURE);
-	data->cmd = strcpy(data->cmd, data->args[0]);
+	data->cmd = _strcpy(data->cmd, data->args[0]);
 	return (l_len);
 }
 
@@ -47,12 +47,15 @@ int handlePath(shdata *data)
 {
 	char path[] = "/bin/";
 	char *tmp = malloc(sizeof(char) * MAX_BUFF);
+	char *cachetmp;
 	struct stat st;
 
+	cachetmp = data->cmd;
 	_strcat(tmp, path);
 	if (_strstr(data->cmd, path) == NULL)
 	{
 		data->cmd = _strcat(tmp, data->cmd);
+		free(cachetmp);
 	}
 
 	return (stat(data->cmd, &st));
