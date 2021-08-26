@@ -4,8 +4,8 @@
 #define _GNU_SOURCE
 #include <dirent.h>
 #include <sys/types.h>
-#include <sys/param.h> 
-#include <sys/stat.h> 
+#include <sys/param.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
@@ -14,12 +14,12 @@
 
 typedef struct tdt
 {
-    char **args;
-    char *cmd;
-    char **env;
-}shdata;
+	char **args;
+	char *cmd;
+	char **env;
+} shdata;
 
-void inputPrompt();
+void inputPrompt(void);
 
 char *_strcpy(char *dest, char *src);
 
@@ -27,9 +27,9 @@ int parseCommands(shdata *);
 
 int handlePath(shdata *);
 
-char* getcmd (char *buff);
+char *getcmd(char *buff);
 
-int isBuiltin(char* command);
+int isBuiltin(char *command);
 
 int isSysCall(shdata *);
 
@@ -37,7 +37,7 @@ void appendbinpath(char **command);
 
 void _printenv(void);
 
-shdata* initdata (shdata *dtt);
+shdata *initdata(shdata *dtt);
 
 void _freedata(shdata *data);
 
