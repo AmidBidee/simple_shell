@@ -19,12 +19,12 @@
 .RB "-[OPTIONS] --[OPTIONS2]"
 
 .SH DESCRIPTION
-.B test_script
-Write detailed description of the tool here. This script can perform all these tasks and must be executed as root user. More information on the tasks performed is explained below:
+.B simple_shell
+This is a simple linux command line interpreter(shell), run simple commands such as ls,pwd etc 
 
 .RS
 .nf
-- Performs task 1
+- Can 
 - Performs task 2
 - Performs task 3
 - Performs task 4
@@ -278,49 +278,13 @@ EXIT STATUS
        2      Success but no reboot required
 
 SEE ALSO
-       test_script1(1), test_script2(1), test_script3 (1)
+       simple_shell(1),
 
 COPYRIGHT
-       Copyright 2019 GoLinuxCloud. All rights reserved https://www.golinuxcloud.com
+       Copyright 2020 simple shell  All rights reserved https://github.com/AmidBidee/simple_shell
 
 CREDITS
-       This man page is created only for demonstration purpose by Deepak Prasad <admin@golinuxcloud.com>
-
-       GoLinuxCloud test_script(1)
-                                                                                                             test_script(1)()
- 
-
-How to Install?
-To install man page you can leave the file test_script.1 under /usr/local/man/man1/
-
-# ls -l /usr/local/man/man1/test_script.1
--rwxr-x--- 1 root root 2891 Sep  9 14:51 /usr/local/man/man1/test_script.1
-You can also archive this file into gzip format
-
-# gzip /usr/local/man/man1/test_script.1
-Next a new archive will be created with gzip extension
-
-# ls -l /usr/local/man/man1/test_script.1.gz
--rwxr-x--- 1 root root 1263 Sep  9 14:51 /usr/local/man/man1/test_script.1.gz
- 
-
-How to create user specific man page?
-To create a user specific man page you can choose a separate folder which is accessible only to the respective user. For example I have a user deepak and I will place the man page file under the home directory of this user.
-
-So I will create a new structure under /home/deepak
-
-[deepak@rhel-7 ~]$ mkdir -p /home/deepak/man/man1
-Next move the man page of test_script which we placed under /usr/local/man/man1. We are moving the file as we want only deepak user to access this man page.
-
-[deepak@rhel-7 ~]$ mv /usr/local/man/man1/test_script.1.gz /home/deepak/man/man1
-Switch user to deepak
-
-rhel-7:/home/deepak/man/man1 # su - deepak
-Last login: Mon Sep  9 15:36:34 IST 2019 on pts/0
-Next we must define the path of the man page location for deepak user using MANPATH. Check if there are any existing path defined for MANPATH.
-
-[deepak@rhel-7 ~]$ echo $MANPATH
-Since there are no paths defined we will add the new path for MANPATH
-
-[deepak@rhel-7 ~]$ export MANPATH=/home/deepak/man
-If the
+       This man page is created only for demonstration purposes
+       			simple_shell(1)
+                          
+                         simple shell
