@@ -13,10 +13,13 @@ int main(void)
 	while (1)
 	{
 		if (isatty(0))
-		{
 			inputPrompt();
-		}
 		data = initdata(data);
+		if (data == NULL)
+		{
+			printf("couldn't initialize data");
+			exit(EXIT_FAILURE);
+		}
 		parseCommands(data);
 		if (data->cmd != NULL && *data->cmd != '\n')
 		{
@@ -29,18 +32,12 @@ int main(void)
 			{
 				mypid = fork();
 				if (mypid == 0)
-				{
 					execve(data->cmd, data->args, data->env);
-				}
 				else
-				{
 					waitpid(mypid, &status, WUNTRACED);
-				}
 			}
 			else
-			{
 				printf("./hsh: 1: %s: not found\n", data->cmd);
-			}
 		}
 		_freedata(data);
 	}
