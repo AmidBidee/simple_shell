@@ -11,8 +11,8 @@ int main(void)
 
 	while (1)
 	{
-		if (isatty(0))
-			inputPrompt();
+		/*if (isatty(0))*/
+		inputPrompt();
 		data = initdata(data);
 		if (data == NULL)
 		{

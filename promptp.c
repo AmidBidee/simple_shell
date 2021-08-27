@@ -5,8 +5,10 @@
  */
 void inputPrompt(void)
 {
-	char *c;
+	/* char *c;*/
 
-	c = "($) ";
-	write(STDOUT_FILENO, c, _strlen(c));
+	/* c = "($) ";*/
+	/* write(STDOUT_FILENO, c, _strlen(c));*/
+	if (isatty(STDIN_FILENO))
+		printf("$ ");
 }
