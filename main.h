@@ -12,6 +12,9 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+
 /**
  * struct tdt - simple shell data structure
  * @args: for a 2d array of strings
