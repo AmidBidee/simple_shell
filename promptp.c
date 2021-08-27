@@ -7,6 +7,6 @@
 void inputPrompt(void)
 {
 char *c;
-c = "$ ";
+c = "($) ";
 write(STDOUT_FILENO, c, _strlen(c));
 }
