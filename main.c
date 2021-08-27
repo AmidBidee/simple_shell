@@ -51,7 +51,7 @@ void handleBuitin(int builtin)
 {
 	if (builtin == 1)
 	{
-		exit(getpid());
+		exit(getppid());
 	}
 	if (builtin == 3)
 	{

@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "*.sqlite3": "sqlite",
+        "*.md": "markdown",
+        "wait.h": "c"
+    }
+}
