@@ -12,6 +12,13 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
+/**
+ * struct tdt - simple shell data structure
+ * @args: for a 2d array of strings
+ * @cmd: for stdin array string
+ * @env: for environmental variable usually {NULL}
+ */
+
 typedef struct tdt
 {
 	char **args;
