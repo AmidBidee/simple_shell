@@ -106,17 +106,58 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- *_strlen- this gives the length of a string
- * @s: this is the pointer passed into the function
- *Return: This returns the length of the string
+ * _strdup - duplicate a string
+ *
+ * @str: the string to copy
+ *
+ * Return: pointer to the newly allocated space in memory,
+ *	   NULL if @str is null, or insufficient memory available
  */
+char *_strdup(char *str)
+{
+	char *newstr;
+	int i, len;
 
+	if (str == NULL)
+		return (NULL);
+
+	len = 0;
+	while (*(str + len++))
+		;
+	newstr = malloc(len *sizeof(char));
+	if (newstr == NULL)
+		return (NULL);
+
+	i = 0;
+	while (*(str + i))
+	{
+		*(newstr + i) = *(str + i);
+		++i;
+	}
+	*(newstr + i) = '\0';
+	return (newstr);
+}
+/**
+ * _strlen - Return length of string
+ * @s: param
+ * Description: String to be passed in
+ *
+ * Return: Always 0
+ */
 int _strlen(char *s)
 {
-int i = 0;
-while (*s++)
-{
-i++;
-}
-return (i);
+	int i, string_len;
+
+	char *string = s;  /* copy string stored from point */
+
+	for (i = 0; string[i] != '\0'; i++)
+	{
+		if (string[i] != '\0')
+			continue;
+		else
+			break;
+	}
+	string_len = i;
+
+	return (string_len);
 }

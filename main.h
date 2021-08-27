@@ -61,7 +61,9 @@ int _strcmp(char *s1, char *s2);
 
 void handleBuitin(int builtin);
 
+int check_file(char *dirname, char *file);
+
 int _strlen(char *s);
 
-int check_file(char *dirname, char *file);
+char *_strdup(char *str);
 #endif
