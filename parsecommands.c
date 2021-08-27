@@ -5,9 +5,6 @@
  * @data: ....
  * Return: returns number of characters
  */
-
-int check_file(char *dirname, char *file);
-
 int parseCommands(shdata *data)
 {
 	char *str, *buff = NULL, *d[2] = {"\n", " "};
@@ -49,17 +46,16 @@ int handlePath(shdata *data)
 	char *tmp;
 	struct stat st;
 
-	path = getenv("PATH"); 
+	path = getenv("PATH");
 	tmp = strdup(path);
 
 	if (_strstr(data->cmd, fpath) != NULL)
 		return (stat(data->cmd, &st));
-        if (tmp == NULL)
-        {
-                printf("error: PATH could not be read");
-                exit(EXIT_FAILURE);
-        }
-
+	if (tmp == NULL)
+	{
+		printf("error: PATH could not be read");
+		exit(EXIT_FAILURE);
+	}
 	token = strtok(tmp, ":");
 	while (token)
 	{
@@ -77,10 +73,8 @@ int handlePath(shdata *data)
 
 /**
  * check_file - check if a file exist in a directory
- *
  * @dirname: directory name
  * @file: name of the file to check
- *
  * Return: 1 if success, 0 if failure
  */
 int check_file(char *dirname, char *file)
@@ -100,7 +94,6 @@ int check_file(char *dirname, char *file)
 	}
 	return (0);
 }
-
 /**
  * isBuiltin - checks if its builtin
  * @command: The command to check
