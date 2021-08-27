@@ -1,11 +1,13 @@
 #include "main.h"
 #define MAX_BUFF 1024
-
 /**
  * parseCommands - this reads info from the stdin and breaks them
  * @data: ....
  * Return: returns number of characters
  */
+
+int check_file(char *dirname, char *file);
+
 int parseCommands(shdata *data)
 {
 	char *str, *buff = NULL, *d[2] = {"\n", " "};
@@ -16,7 +18,6 @@ int parseCommands(shdata *data)
 	nr = getline(&buff, &len, stdin);
 	if (nr == -1)
 		exit(EXIT_FAILURE);
-
 	if (nr)
 	{
 		for (i = 0; i < 2; i++)
@@ -38,27 +39,66 @@ int parseCommands(shdata *data)
 }
 
 /**
- * handlePath - This appends the bin oath to the command
- *              if it does not exist already
+ * handlePath - checks if command exists
  * @data: this is the 2d array
  * Return: returns 0 on success
  */
 int handlePath(shdata *data)
 {
-	char path[] = "/bin/";
-	char *tmp = malloc(sizeof(char) * MAX_BUFF);
-	char *cachetmp;
+	char *path = NULL, *token = NULL, *fpath = "/bin/";
+	char *tmp;
 	struct stat st;
 
-	cachetmp = data->cmd;
-	_strcat(tmp, path);
-	if (_strstr(data->cmd, path) == NULL)
-	{
-		data->cmd = _strcat(tmp, data->cmd);
-		free(cachetmp);
-	}
+	path = getenv("PATH"); 
+	tmp = strdup(path);
 
-	return (stat(data->cmd, &st));
+	if (_strstr(data->cmd, fpath) != NULL)
+		return (stat(data->cmd, &st));
+        if (tmp == NULL)
+        {
+                printf("error: PATH could not be read");
+                exit(EXIT_FAILURE);
+        }
+
+	token = strtok(tmp, ":");
+	while (token)
+	{
+		if (check_file(token, data->cmd) == 1)
+		{
+			_strcat(token, "/");
+			_strcpy(data->cmd, _strcat(token, data->cmd));
+			return (0);
+		}
+		token = strtok(NULL, ":");
+	}
+	free(tmp);
+	return (-1);
+}
+
+/**
+ * check_file - check if a file exist in a directory
+ *
+ * @dirname: directory name
+ * @file: name of the file to check
+ *
+ * Return: 1 if success, 0 if failure
+ */
+int check_file(char *dirname, char *file)
+{
+	DIR *d;
+	struct dirent *dir;
+
+	d = opendir(dirname);
+	if (d)
+	{
+		while ((dir = readdir(d)) != NULL)
+		{
+			if (_strcmp(dir->d_name, file) == 0)
+				return (1);
+		}
+		closedir(d);
+	}
+	return (0);
 }
 
 /**
