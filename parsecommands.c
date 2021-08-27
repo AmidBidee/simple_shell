@@ -46,14 +46,15 @@ int parseCommands(shdata *data)
 int handlePath(shdata *data)
 {
 	char path[] = "/bin/";
-	char *tmp = malloc(sizeof(char) * MAX_BUFF);
+	char *tmp;
 	char *cachetmp;
 	struct stat st;
 
-	cachetmp = data->cmd;
-	_strcat(tmp, path);
 	if (_strstr(data->cmd, path) == NULL)
 	{
+		cachetmp = data->cmd;
+		tmp = malloc(sizeof(char) * MAX_BUFF);
+		_strcat(tmp, path);
 		data->cmd = _strcat(tmp, data->cmd);
 		free(cachetmp);
 	}
