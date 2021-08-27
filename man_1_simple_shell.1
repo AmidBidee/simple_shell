@@ -19,133 +19,61 @@
 .RB "-[OPTIONS] --[OPTIONS2]"
 
 .SH DESCRIPTION
-.B simple_shell
-This is a simple linux command line interpreter(shell), run simple commands such as ls,pwd etc 
+.B SIMPLE SHELL
+This is a simple linux command line interpreter(shell), run simple commands such as ls,pwd... the shell takes in a string of command and
+arguments, this shell searches for command available in paths available in PATH.
 
 .RS
 .nf
-- Can 
-- Performs task 2
-- Performs task 3
-- Performs task 4
+- Can
+- list directories
+- Run simple programs and system commands on user's path
 .RE
-
-This is a test script for man page template. Place brief description here.
 
 .SH OBJECT
 .TP
 .B -^-a1|-arg1 <arg1_value>
-Provide arg1_value. Must be fIintegerfR. Provide more hint for the user related to arg1_value
-
-.TP
-.B -^-a2|-arg2 <arg2_value>
-Provide arg2_value. Must be fIintegerfR. Provide more hint for the user related to arg2_value
-
-.TP
-.B -^-a3|-arg3 "value1,value2,value3,.."
-
-.TP
-Different man page examples formats
-
-.PP
-.B
-Display in normal format with regular TAB using .RS and TAB value of 1.2i
-
-.RS 1.2i
-.PP
-.I TEAM1
-.B -
-team1_value1, team1_value2
-.PP
-.I TEAM2
-.B -
-team2_value1, team2_value2
-.RE
-
-.TP
-.B
-Display content in Table Format. Floating in Left
-.
-
-.RS 1.2i
-
-.TS
-tab(@), left, box;
-c | c
-rB | r.
-TEAM@Value
-_
-TEAM1@team1_value1, team1_value2
-TEAM2@team2_value1, team2_value2
-TEAM3@team3_value1, team3_value2
-TEAM4@team4_value1, team4_value2
-.TE
-.RE
-
-.TP
-.B
-Display content in a Tabular format
-
-.RS 1.2i
-
-.TS
-tab (@);
-l c c.
-TEAM@Value@Comment
-_
-T{
-TEAM1
-T}@team1_value1, team1_value2@Value for team1@
-T{
-TEAM2
-T}@team2_value1, team2_value2@Value for team2
-T{
-TEAM3
-T}@team3_value1, team3_value2@Value for team3
-T{
-TEAM4
-T}@team4_value1, team4_value2@Value for team4
-.TE
-
-
-.TP
-.RE
-.PP
-Multiple values can be added within inverted commas separated by comma for different teams
-
+Provide command. Must be on fIPATHfR to be able to run commands. the command could a simple linux command or program executable
 
 .SH OPTIONS
 .IP "fB--arg4fP <arg4_value>"
-Put description for argument 4 value. The is optional argument.
+Shell Also takes in command arguments
 
 .IP "fB-h|--helpfP"
 Prints help
 
-.SH FILES
-.TP
-.I
-/etc/test_script.conf
-.TP
-.I
-/usr/bin/test_script
 
 .SH EXAMPLES
 .TP
-.BI test_script --arg1  my_arg1  --arg4  'team1_value1,team2_value1'
+.BI echo "ls -l /tmp" | ./hsh
 .TP
 .PP
-Run test_script with my_arg1 value for team1 value
+Run shell non-interactively by passing in commands from a string
 .TP
-.BI test_script --arg2  my_arg2  --arg4  'team2_value1,team2_value2'
+.BI ($) ls -l  /tmp
 .TP
 .PP
-Run test_script with my_arg2 value for team2 value
+Run shell in interactive mode and passing in commands
+.TP
+.BI /bin/ls -la
+.TP
+.PP
+The full path to the executable can also be provided if not shell searches for it in PATH
 
 
 .SH DIAGNOSTICS
 .PP
-The activity performed using this utility is logged in the file fB/var/log/test_scriptfR
+The activity performed using this utility is logged in the file fB/var/log/simple_shellfR
 
+.SH RETURN
+.TP
+.B
+0
+The Path handler returns 0 if command matches any file in PATH and appends the full path to it's executable
+
+.TP
+.B
+-1 Else returns -1 meaning the command wasn't found and an error is printed however if it proceed to execute if it's an inbuilt command
 
 .SH EXIT STATUS
 .TP
@@ -156,135 +84,27 @@ Success
 .TP
 .B
 1
-Success but reboot required
-
-.TP
-.B
-2
-Success but no reboot required
-
-.SH SEE ALSO
-.BR test_script1 (1),
-.BR test_script2 (1),
-test_script3 (1)
+Fail
 
 .SH COPYRIGHT
 .PP
-Copyright 2019 GoLinuxCloud. All rights reserved
-https://www.golinuxcloud.com
+Copyright 2021 Simple Shell All rights reserved
+https://github.com/AmidBidee/simple_shell
 
 .SH CREDITS
 .PP
-This man page is created only for demonstration purpose by Deepak Prasad <admin@golinuxcloud.com>
+This man page is created only for demonstration purpose by Aaron Ahmid Balogun
+
+.TS
+tab(@), left, box;
+c | c
+rB | r.
+TEAM@Contributors
+_
+Name@Elijah Daniel, Aaron Balogun
+.TE
+.RE
 
 .SH
 .PP
-GoLinuxCloud test_script(1)
- 
-
-Advertisement
-
-Man command in Linux
-Above using the template we wrote our man page example for test script. To access the man page which we created using our man page template you can use man scriptname from the terminal.
-
-# man test_script
-test_script(1)()                                                                                             test_script(1)()
-
-test_script - user interface to perform some task
-
-SYNOPSIS
-       test_script {OBJECT} [OPTIONS]
-
-DESCRIPTION
-       test_script  Write detailed description of the tool here. This script can perform all these tasks and must be executed
-       as root user. More information on the tasks performed is explained below:
-
-              - Performs task 1
-              - Performs task 2
-              - Performs task 3
-              - Performs task 4
-
-       This is a test script for man page template. Place brief description here.
-
-OBJECT
-       --a1|-arg1 <arg1_value>
-              Provide arg1_value. Must be integer. Provide more hint for the user related to arg1_value
-
-       --a2|-arg2  <arg2_value>
-              Provide arg2_value. Must be integer. Provide more hint for the user related to arg2_value
-
-       --a3|-arg3 value1,value2,value3,..
-
-       Different man page examples formats
-
-       Display in normal format with regular TAB using .RS and TAB value of 1.2i
-
-                   TEAM1 - team1_value1, team1_value2
-
-                   TEAM2 - team2_value1, team2_value2
-
-       Display content in Table Format. Floating in Left
-
-                   ┌──────┬────────────────────────────┐
-                   │TEAM  │           Value            │
-                   ├──────┼────────────────────────────┤
-                   │TEAM1 │ team1_value1, team1_value2 │
-                   │TEAM2 │ team2_value1, team2_value2 │
-                   │TEAM3 │ team3_value1, team3_value2 │
-                   │TEAM4 │ team4_value1, team4_value2 │
-                   └──────┴────────────────────────────┘
-
-       Display content in a Tabular format
-
-                   TEAM              Value                  Comment
-                   ─────────────────────────────────────────────────────
-
-                   TEAM1   team1_value1, team1_value2   Value for team1
-                   TEAM2   team2_value1, team2_value2   Value for team2
-                   TEAM3   team3_value1, team3_value2   Value for team3
-                   TEAM4   team4_value1, team4_value2   Value for team4
-
-              Multiple values can be added within inverted commas separated by comma for different teams
-
-OPTIONS
-       --arg4 <arg4_value>
-              Put description for argument 4 value. The is optional argument.
-
-       -h|--help
-              Prints help
-
-FILES
-       /etc/test_script.conf
-
-       /usr/bin/test_script
-
-EXAMPLES
-       test_script --arg1 my_arg1 --arg4 'team1_value1,team2_value1'
-
-              Run test_script with my_arg1 value for team1 value
-
-       test_script --arg2 my_arg2 --arg4 'team2_value1,team2_value2'
-
-              Run test_script with my_arg2 value for team2 value
-
-DIAGNOSTICS
-       The activity performed using this utility is logged in the file /var/log/test_script
-
-EXIT STATUS
-       0      Success
-
-       1      Success but reboot required
-
-       2      Success but no reboot required
-
-SEE ALSO
-       simple_shell(1),
-
-COPYRIGHT
-       Copyright 2020 simple shell  All rights reserved https://github.com/AmidBidee/simple_shell
-
-CREDITS
-       This man page is created only for demonstration purposes
-       			simple_shell(1)
-                          
-                         simple shell
+simple_shell(1)
