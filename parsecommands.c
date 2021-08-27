@@ -47,7 +47,7 @@ int handlePath(shdata *data)
 	struct stat st;
 
 	path = getenv("PATH");
-	tmp = strdup(path);
+	tmp = _strdup(path);
 
 	if (_strstr(data->cmd, fpath) != NULL)
 		return (stat(data->cmd, &st));
