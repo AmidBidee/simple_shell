@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
 * _strtok - Own implementation of strtok.
 * @base: String to evaluate.
