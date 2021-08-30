@@ -78,6 +78,7 @@ void _freedata(shdata *data)
 	data->args = NULL;
 	free(data->env);
 	data->env = NULL;
+	free(data);
 }
 
 /**
