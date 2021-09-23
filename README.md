@@ -1,4 +1,4 @@
-# [0x16. C - Simple Shell](https://github.com/AmidBidee/simple_shell/)
+# [C - Simple Shell](https://github.com/AmidBidee/simple_shell/)
 
 A simple unix command interpreter built as a project for the ALX software engineering program.
 
